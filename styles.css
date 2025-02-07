@@ -5,16 +5,21 @@
   box-sizing: border-box;
 }
 
-/* CSS Variables for easy theme management */
+/* Smooth Scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+/* CSS Variables for theme management */
 :root {
   --primary-color: #ff6f61;
   --secondary-color: #35424a;
   --light-color: #f4f4f4;
   --dark-color: #333;
-  --font-family: 'Arial', sans-serif;
+  --font-family: 'Roboto', sans-serif;
 }
 
-/* Body Styling */
+/* Global Styles */
 body {
   font-family: var(--font-family);
   color: var(--dark-color);
@@ -22,38 +27,40 @@ body {
   background-color: var(--light-color);
 }
 
-/* Navigation */
-nav {
+/* Navigation Container */
+.nav-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
   padding: 20px;
   background: var(--secondary-color);
 }
 
-nav .logo {
+.nav-container .logo {
   color: var(--light-color);
-  font-size: 1.5rem;
+  font-size: 1.8rem;
   font-weight: bold;
 }
 
-nav .nav-links {
+.nav-container .nav-links {
   list-style: none;
   display: flex;
+  flex-wrap: wrap;
 }
 
-nav .nav-links li {
+.nav-container .nav-links li {
   margin-left: 20px;
 }
 
-nav .nav-links a {
+.nav-container .nav-links a {
   color: var(--light-color);
   text-decoration: none;
   font-size: 1rem;
   transition: color 0.3s ease;
 }
 
-nav .nav-links a:hover {
+.nav-container .nav-links a:hover {
   color: var(--primary-color);
 }
 
@@ -85,6 +92,7 @@ nav .nav-links a:hover {
   position: relative;
   z-index: 2;
   animation: fadeIn 1.5s ease-out;
+  padding: 20px;
 }
 
 .hero-content h1 {
@@ -117,11 +125,6 @@ nav .nav-links a:hover {
 /* Sections */
 .section {
   padding: 60px 20px;
-  background: var(--light-color);
-}
-
-.section:nth-of-type(even) {
-  background: #fff;
 }
 
 .container {
@@ -133,7 +136,7 @@ nav .nav-links a:hover {
 .portfolio-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+  gap: 30px;
   margin-top: 40px;
 }
 
@@ -141,6 +144,12 @@ nav .nav-links a:hover {
   position: relative;
   overflow: hidden;
   border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.portfolio-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
 }
 
 .portfolio-item img {
@@ -244,13 +253,25 @@ footer {
 
 /* Responsive Design */
 @media (max-width: 768px) {
-  nav .nav-links {
-    display: none;
-    /* For a fully responsive design, you could implement a hamburger menu here */
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
   }
+  
+  .nav-container .nav-links {
+    margin-top: 10px;
+    flex-direction: column;
+    width: 100%;
+  }
+  
+  .nav-container .nav-links li {
+    margin: 10px 0;
+  }
+  
   .hero-content h1 {
     font-size: 2.5rem;
   }
+  
   .hero-content p {
     font-size: 1rem;
   }
